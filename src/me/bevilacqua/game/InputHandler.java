@@ -10,7 +10,7 @@ public class InputHandler implements KeyListener{
 	
 	public void tick() {
 		up =  keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W];    //Will be Jump
-		down =  keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S];  //Will not be down but maybe slide or better yet action key
+		down =  keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S];  //Will not be down but maybe slide or better yet action key or maybe shoot
 		left =  keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
 		right =  keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];		
 	}
