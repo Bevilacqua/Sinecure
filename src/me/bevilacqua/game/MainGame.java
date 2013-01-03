@@ -41,8 +41,8 @@ public class MainGame extends Canvas implements Runnable {
 		
 		screen = (new Screen(WIDTH , HEIGHT));
 		input = new InputHandler();
-//		level = new RandomLevel(300 , 300 , "Test");
-		level = new LoadableLevel("/Levels/Test.png" , "Test" );
+//		level = new RandomLevel(300 , 300 , "RandomTest" , 0x666666);
+		level = new LoadableLevel("/Levels/Test.png" , "Test" , 0x666666);
 //		level = new LoadableLevel("/Levels/Ben's Awesome Thing.png" , "Bens Awesome Thing" );
 		
 		
@@ -114,6 +114,15 @@ public class MainGame extends Canvas implements Runnable {
 		}
 	}
 	
+	private static int fill;
+	
+	public static void setFill(int background) {
+		fill = background;
+	}
+	
+	public static int getFill() {
+		return fill;
+	}
 	int x = 0 , y = 0;
 	
 	private void render() {
@@ -126,7 +135,7 @@ public class MainGame extends Canvas implements Runnable {
 		screen.clear();
 		
 		//Rendering goes below:
-			screen.fillBackRoundSolidColor(0x000000);
+			screen.fillBackRoundSolidColor(fill);
 			level.render(x, y, screen);
 		
 		for (int i = 0 ; i < pixels.length ; i++) { //Sets the pixels array in MainGame to the pixel array in the Screen class

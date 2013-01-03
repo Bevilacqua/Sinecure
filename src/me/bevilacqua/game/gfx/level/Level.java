@@ -1,6 +1,8 @@
 package me.bevilacqua.game.gfx.level;
 
+import me.bevilacqua.game.MainGame;
 import me.bevilacqua.game.gfx.Screen;
+import me.bevilacqua.game.gfx.Sprite;
 import me.bevilacqua.game.gfx.level.tiles.Tile;
 
 public class Level {
@@ -13,16 +15,20 @@ public class Level {
 	//Pre-MadeLevels
 //	public static final Level TEST_LEVEL = new LoadableLevel("/Levels/Test.png" , "TEST_LEVEL"); 
 
-	public Level(int width, int height , String name) {
+	public Level(int width, int height , String name , int background) {
 		this.width = width;
 		this.height = height;
+		MainGame.setFill(background);
+		Sprite.setVoidColor(background);
 		this.name = name;
 		tilez = new byte[this.width * this.height];
 		generateLevel();
 	}
 
-	public Level(String path , String name) {
+	public Level(String path , String name , int background) {
 		this.name = name;
+		MainGame.setFill(background);
+		Sprite.setVoidColor(background);
 		loadLevel(path);
 	}
 

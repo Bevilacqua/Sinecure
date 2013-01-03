@@ -1,22 +1,26 @@
 package me.bevilacqua.game.gfx;
 
-public class Sprite {
+public abstract class Sprite {
 	
-	public final int size;
-	private int x , y;
+	public int size;
+	protected int x;
+	protected int y;
 	public int[] pixels;
-	private SpriteSheet sheet;
+	protected SpriteSheet sheet;
 	public String name;
+	public boolean isTrans = false;
+	private static int voidColor = 0x666666;
 	
-	public static final Sprite Beam_Light = new Sprite(SpriteSheet.SolidTiles, 16 , 0, 0, "Beam_Light");
-	public static final Sprite Beam_Dark = new Sprite(SpriteSheet.SolidTiles, 16 , 1 , 0 , "Beam_Dark");
-	public static final Sprite Test_Sprite = new Sprite(SpriteSheet.SolidTiles, 16 , 2 , 0 , "Test_Sprite");
-	public static final Sprite Fire_Barrel = new Sprite(SpriteSheet.SolidTiles, 16 , 3 , 0 , "Fire_Barrel");
+	public static final Sprite Beam_Light = new BasicSprite(SpriteSheet.SolidTiles, 16 , 0, 0, "Beam_Light");
+	public static final Sprite Beam_Dark = new BasicSprite(SpriteSheet.SolidTiles, 16 , 1 , 0 , "Beam_Dark");
+	public static final Sprite Test_Sprite = new BasicSprite(SpriteSheet.SolidTiles, 16 , 2 , 0 , "Test_Sprite");
+	
+	public static final Sprite Fire_Barrel = new BasicTransSprite(SpriteSheet.SolidTiles, 16 , 3 , 0 , "Fire_Barrel" , true);
 
-	public static final Sprite Lava_Test = new Sprite(0xff2f00 , "Lava_Test");
-	public static final Sprite DarkNess = new Sprite(0x000000 , "DarkNess");
-	public static final Sprite DarkDirt = new Sprite(0x542100 , "DarkDirt");
-	public static final Sprite VOID = new Sprite();
+	public static final Sprite Lava_Test = new BasicSprite(0xff2f00 , "Lava_Test");
+	public static final Sprite DarkNess = new BasicSprite(0x000000 , "DarkNess");
+	public static final Sprite DarkDirt = new BasicSprite(0x542100 , "DarkDirt");
+	public static final Sprite VOID = new BasicSprite();
 	
 	public Sprite() {
 		this.name = "void";
@@ -26,10 +30,22 @@ public class Sprite {
 		
 		for(int y = 0 ; y < size ; y++) {
 			for(int x = 0 ; x < size ; x++) {
-				pixels[x + y * size] = 0x666666;
+				
+				pixels[x + y * size] = voidColor;
 			}
 		}
 		System.out.println("Void Sprite Loaded");
+	}
+	
+	public Sprite(SpriteSheet sheet , int size , int x , int y  , String name , boolean isTrans) {
+		this.size = size;
+		this.isTrans = true;
+		pixels = new int[size * size]; //Creates a pixel array the size of the sprite
+		this.x = x * size; //* size so it moves over an entire tile over
+		this.y = y * size; //
+		this.sheet = sheet;
+		this.name = name;
+		load();
 	}
 	
 	public Sprite(int color , String name) {
@@ -40,6 +56,7 @@ public class Sprite {
 		
 		for(int y = 0 ; y < size ; y++) {
 			for(int x = 0 ; x < size ; x++) {
+				
 				pixels[x + y * size] = color;
 			}
 		}
@@ -59,13 +76,15 @@ public class Sprite {
 	public static int getSize(Sprite sprite) {
 		return sprite.size;
 	}
-	private void load() {
-		for(int y = 0 ; y < size ; y++) {
-			for(int x = 0 ; x < size ; x++) {
-				pixels[x + y * size] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
-			}
-		}
-		System.out.println(this.name + " (Sprite) Loaded | Size: " + Sprite.getSize(this));
-	}
-}
+	
+	protected abstract void load();
 
+	public int getVoidColor() {
+		return voidColor;
+	}
+
+	public static void setVoidColor(int Color) {
+		voidColor = Color;
+	}
+
+}
