@@ -13,15 +13,14 @@ import javax.swing.JFrame;
 import me.bevilacqua.game.gfx.Screen;
 import me.bevilacqua.game.gfx.level.Level;
 import me.bevilacqua.game.gfx.level.LoadableLevel;
-import me.bevilacqua.game.gfx.level.RandomLevel;
 
 public class MainGame extends Canvas implements Runnable {
 	//SIDESCROLLER!!!
 	//16*16 tiles
 	private static final long serialVersionUID = 1L;
-	private static final int WIDTH = 300;
+	private static final int WIDTH = 320;
 	private static final int HEIGHT = WIDTH / 16 * 9; // 16 * 9 maintains a 16 X 9 aspect ratio
-	private static final int SCALE = 3;
+	private static final int SCALE = 4;
 	private static final String TITLE = "Ongoing";
 	
 	JFrame frame;
@@ -30,7 +29,7 @@ public class MainGame extends Canvas implements Runnable {
 	private static Screen screen;
 	private InputHandler input;
 	private static Level level;
-	
+		
 	private BufferedImage image = new BufferedImage(WIDTH , HEIGHT , BufferedImage.TYPE_INT_RGB); //The image the game runs on but you cant edit it without a raster
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); //Converts the buffered image into an array of integers to hold pixel data 
 
@@ -45,6 +44,8 @@ public class MainGame extends Canvas implements Runnable {
 //		level = new RandomLevel(300 , 300 , "Test");
 		level = new LoadableLevel("/Levels/Test.png" , "Test" );
 //		level = new LoadableLevel("/Levels/Ben's Awesome Thing.png" , "Bens Awesome Thing" );
+		
+		
 
 		addKeyListener(input); //kinda like frame.add
 		
@@ -125,8 +126,8 @@ public class MainGame extends Canvas implements Runnable {
 		screen.clear();
 		
 		//Rendering goes below:
-		screen.fillBackRoundSolidColor(0x000000);
-		level.render(x, y, screen);
+			screen.fillBackRoundSolidColor(0x000000);
+			level.render(x, y, screen);
 		
 		for (int i = 0 ; i < pixels.length ; i++) { //Sets the pixels array in MainGame to the pixel array in the Screen class
 			pixels[i] = screen.pixels[i];
@@ -148,4 +149,5 @@ public class MainGame extends Canvas implements Runnable {
 		if(input.right) x+=1;
 
 	}
+	
 }

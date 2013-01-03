@@ -41,6 +41,14 @@ public class Screen {
 			pixels[i] = color;
 	}
 
+	public void render() {
+		for(int y = 0 ; y < height ; y++) {
+			for(int x = 0 ; x < width ; x++) {
+				int tileIndex = (x / 16) + (y / 16) * 64;
+				pixels[x + y * width] = tiles[tileIndex];
+			}
+		}
+	}
 	
 	public void renderTile(int xPos , int yPos , Tile tile) {
 		xPos -= xOffset;
