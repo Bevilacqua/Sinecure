@@ -2,6 +2,7 @@ package me.bevilacqua.game.gfx;
 
 import java.util.Random;
 
+import me.bevilacqua.game.gfx.level.Level;
 import me.bevilacqua.game.gfx.level.tiles.Tile;
 
 public class Screen {
@@ -10,6 +11,8 @@ public class Screen {
 	private int MAP_SIZE = 64;
 	private int MAP_SIZE_MASK = MAP_SIZE - 1;
 	public int[] pixels;
+	public int[] forpixels;
+
 	
 	public int xOffset , yOffset;
 	
@@ -40,6 +43,7 @@ public class Screen {
 		for(int i = 0 ; i < pixels.length ; i++) 
 			pixels[i] = color;
 	}
+	
 	
 	public void renderTile(int xPos , int yPos , Tile tile) {
 		xPos -= xOffset;

@@ -16,9 +16,10 @@ public class LoadableLevel extends Level {
 	private BufferedImage image;
 
 	public LoadableLevel(String path, String name , int background) {
-		super(path, name, background );
+		super(path, name, background);
 		this.name = name;
 		this.path = path;
+		this.forground = forground;
 		
 		load();
 		fillTile();

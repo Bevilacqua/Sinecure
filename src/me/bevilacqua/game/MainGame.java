@@ -4,6 +4,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.Window;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -18,7 +20,7 @@ public class MainGame extends Canvas implements Runnable {
 	//SIDESCROLLER!!!
 	//16*16 tiles
 	private static final long serialVersionUID = 1L;
-	private static final int WIDTH = 320;
+	private static final int WIDTH = 420;
 	private static final int HEIGHT = WIDTH / 16 * 9; // 16 * 9 maintains a 16 X 9 aspect ratio
 	private static final int SCALE = 4;
 	private static final String TITLE = "Ongoing";
@@ -57,6 +59,8 @@ public class MainGame extends Canvas implements Runnable {
 		frame.setTitle(TITLE);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		System.out.println("Screen Created Resolution:_ " + WIDTH * SCALE + " x " + HEIGHT * SCALE + " _:");
 	}
 
 	public static void main(String Args[]) {		
