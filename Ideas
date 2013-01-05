@@ -15,5 +15,6 @@ Foreground specific to level.. if randomly generated use somesort of default for
 shading as demonstrated in /res/ideas/shading.png
 
 Define (level-specific) where the ground level starts and say everything below this is one backround and above it is another (ex. terraria)
+If anyone has an idea how to do this cleanly let me know i tried but it was such a mess i couldn't get it to work
 
 Attacking will be mouse controled however action button will be down button
