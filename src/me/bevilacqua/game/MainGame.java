@@ -3,15 +3,16 @@ package me.bevilacqua.game;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GraphicsDevice;
-import java.awt.Window;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.text.DecimalFormat;
 
 import javax.swing.JFrame;
 
+import me.bevilacqua.game.entity.Player;
 import me.bevilacqua.game.gfx.Screen;
 import me.bevilacqua.game.gfx.level.Level;
 import me.bevilacqua.game.gfx.level.LoadableLevel;
@@ -22,7 +23,7 @@ public class MainGame extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	private static final int WIDTH = 420;
 	private static final int HEIGHT = WIDTH / 16 * 9; // 16 * 9 maintains a 16 X 9 aspect ratio
-	private static final int SCALE = 4;
+	private static final int SCALE = 3;
 	private static final String TITLE = "Ongoing";
 	
 	JFrame frame;
@@ -31,6 +32,13 @@ public class MainGame extends Canvas implements Runnable {
 	private static Screen screen;
 	private InputHandler input;
 	private static Level level;
+	private Player player;
+	
+	private int Fframes;
+	private int Fticks;
+	private double framePerc = 0;
+	DecimalFormat df = new DecimalFormat("###.##");
+
 		
 	private BufferedImage image = new BufferedImage(WIDTH , HEIGHT , BufferedImage.TYPE_INT_RGB); //The image the game runs on but you cant edit it without a raster
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); //Converts the buffered image into an array of integers to hold pixel data 
@@ -48,7 +56,7 @@ public class MainGame extends Canvas implements Runnable {
 //		level = new LoadableLevel("/Levels/Ben's Awesome Thing.png" , "Bens Awesome Thing" );
 		
 		
-
+		player = new Player(input);
 		addKeyListener(input); //kinda like frame.add
 		
 		frame = new JFrame();
@@ -110,6 +118,10 @@ public class MainGame extends Canvas implements Runnable {
 			
 			if (System.currentTimeMillis() - lastTimer >= 1000) {
 				lastTimer += 1000;
+				framePerc = 0;
+				Fframes = frames;
+				Fticks = ticks;
+				framePerc = (((double)Fframes / 60D)) * 100;
 				frame.setTitle(TITLE + "   |" + " Frames: " + frames + " Ticks: " + ticks);
 				System.out.println(TITLE + "   |" + " Frames: " + frames + " Ticks: " + ticks);
 				frames = 0;
@@ -118,6 +130,11 @@ public class MainGame extends Canvas implements Runnable {
 		}
 	}
 	
+	private void tick() {
+		input.tick();
+		player.tick();
+	}
+
 	private static int fill;
 	
 	public static void setFill(int background) {
@@ -127,7 +144,6 @@ public class MainGame extends Canvas implements Runnable {
 	public static int getFill() {
 		return fill;
 	}
-	int x = 0 , y = 0;
 	
 	private void render() {
 		BufferStrategy bs = getBufferStrategy();
@@ -140,7 +156,7 @@ public class MainGame extends Canvas implements Runnable {
 		
 		//Rendering goes below:
 			screen.fillBackRoundSolidColor(fill);
-			level.render(x, y, screen);
+			level.render(player.getX(), player.getY(), screen);
 		
 		for (int i = 0 ; i < pixels.length ; i++) { //Sets the pixels array in MainGame to the pixel array in the Screen class
 			pixels[i] = screen.pixels[i];
@@ -148,19 +164,21 @@ public class MainGame extends Canvas implements Runnable {
 		//Displaying goes below:
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null); //Draws the buffered image (pixels[])
-		g.setColor(Color.GREEN);
+		
+		//FrameRate Display
+		if(Fframes >= 60) g.setColor(Color.white);
+		else if (Fframes >= 55) g.setColor(Color.YELLOW);
+		else if (Fframes > 65 ) g.setColor(Color.GREEN);
+		else g.setColor(Color.red);
+		g.setFont(new Font("Verdana" , 0 , 10));
+		String err = "";
+		if(Fframes <= 20 || Fframes > 65) err = "| CHECK FRAMERATE |"; 
+		g.drawString("(" + Fframes + ")" + " " + df.format(framePerc) + "% " + err  , 10 , HEIGHT * SCALE - 10);
+		//End of FrameRateDisplay
+		
 //		g.drawRect(0, 141 * SCALE, 300 * SCALE + 8 , 70);
 		g.dispose(); //Disposes the graphics
 		bs.show(); //Shows the next buffer
-	}
-
-	private void tick() {
-		input.tick();
-		if(input.up) y-=1;
-		if(input.down) y+=1;
-		if(input.left) x-=1;
-		if(input.right) x+=1;
-
 	}
 	
 }

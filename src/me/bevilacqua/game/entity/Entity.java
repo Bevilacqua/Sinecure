@@ -20,8 +20,6 @@ public abstract class Entity {
 	}
 
 	
-	
-	
 //Getters/Setters	
 	public int getX() {
 		return x;

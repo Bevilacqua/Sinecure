@@ -8,8 +8,8 @@ public class RandomLevel extends Level{
 
 	private static final Random random = new Random();
 	
-	public RandomLevel(int width, int height, String Name , int background , String forground) {
-		super(width, height, Name, background , forground);
+	public RandomLevel(int width, int height, String Name , int background) {
+		super(width, height, Name, background);
 	}
 
 	protected void generateLevel() {

@@ -11,15 +11,13 @@ public class Level {
 	protected static int height;
 	protected byte[] tilez;
 	protected String name;
-	public String forground;
 	
 	//Pre-MadeLevels
 //	public static final Level TEST_LEVEL = new LoadableLevel("/Levels/Test.png" , "TEST_LEVEL"); 
 
-	public Level(int width, int height , String name , int background , String forground) {
+	public Level(int width, int height , String name , int background) {
 		this.width = width;
 		this.height = height;
-		this.forground = forground;
 		MainGame.setFill(background);
 		Sprite.setVoidColor(background);
 		this.name = name;
@@ -29,7 +27,6 @@ public class Level {
 
 	public Level(String path , String name , int background) {
 		this.name = name;
-		this.forground = forground;
 		MainGame.setFill(background);
 		Sprite.setVoidColor(background);
 		loadLevel(path);

@@ -19,7 +19,6 @@ public class LoadableLevel extends Level {
 		super(path, name, background);
 		this.name = name;
 		this.path = path;
-		this.forground = forground;
 		
 		load();
 		fillTile();

@@ -11,3 +11,9 @@ Dual state tiles ex. fire barrel and exploded fire barrel
 Multiple charachter choices
 
 Foreground specific to level.. if randomly generated use somesort of default foreground
+
+shading as demonstrated in /res/ideas/shading.png
+
+Define (level-specific) where the ground level starts and say everything below this is one backround and above it is another (ex. terraria)
+
+Attacking will be mouse controled however action button will be down button
