@@ -44,6 +44,19 @@ public class Screen {
 			pixels[i] = color;
 	}
 	
+	public void renderPlayer(int xp , int  yp , Sprite sprite) {
+		xp -= xOffset;
+		yp -= yOffset;
+		for(int y = 0 ; y < 15; y++) {
+			int yAbs = y + yp;
+			for(int x = 0 ; x < 16 ; x++) {
+				int xAbs = x + xp;
+				if(xAbs < -16 || xAbs >= width || yAbs < 0 || yAbs >= height) break;
+				if(xAbs < 0) xAbs = 0;
+				pixels[xAbs + yAbs * width] = sprite.pixels[x + y * 16];
+			}
+		}
+	}
 	
 	public void renderTile(int xPos , int yPos , Tile tile) {
 		xPos -= xOffset;

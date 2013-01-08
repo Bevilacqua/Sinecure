@@ -58,8 +58,7 @@ public class Level {
 
 	public Tile getTile(int x, int y) {
 		if(x < 0 || y < 0 || x >= width || y >= height) return Tile.VOID;
-		//Null Pointer Exception dealing with tiles[x + y * width]
-
+		
 		if(tilez[x + y * width ] == Tile.BEAM_LIGHT.getId()) return Tile.BEAM_LIGHT;
 		if(tilez[x + y * width ] == Tile.BEAM_DARK.getId()) return Tile.BEAM_DARK;
 		if(tilez[x + y * width] == Tile.TEST.getId()) return Tile.TEST;

@@ -22,7 +22,8 @@ public abstract class Mob extends Entity{
 	
 	public abstract void tick();
 	
-	public abstract void render();
+	public void render() {
+	}
 	
 	private boolean collision() {
 		return false;

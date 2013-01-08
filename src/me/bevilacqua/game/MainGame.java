@@ -156,7 +156,11 @@ public class MainGame extends Canvas implements Runnable {
 		
 		//Rendering goes below:
 			screen.fillBackRoundSolidColor(fill);
-			level.render(player.getX(), player.getY(), screen);
+			int xScroll = player.getX() - screen.width /2;
+			int yScroll = player.getY() - screen.height /2;
+
+			level.render(xScroll, yScroll , screen);
+			player.render(screen);
 		
 		for (int i = 0 ; i < pixels.length ; i++) { //Sets the pixels array in MainGame to the pixel array in the Screen class
 			pixels[i] = screen.pixels[i];

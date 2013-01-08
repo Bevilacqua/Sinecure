@@ -22,6 +22,10 @@ public abstract class Sprite {
 	public static final Sprite DarkDirt = new BasicSprite(0x542100 , "DarkDirt");
 	public static final Sprite VOID = new BasicSprite();
 	
+	public static final Sprite DefaultPlayer0 = new BasicSprite(SpriteSheet.DefaultPlayer , 16 , 0 , 0 , "-DefaultPlayer0");
+	public static final Sprite DefaultPlayer1 = new BasicSprite(SpriteSheet.DefaultPlayer , 16 , 0 , 1 , "-DefaultPlayer1");
+
+	
 	public Sprite() {
 		this.name = "void";
 		pixels = new int [16 * 16];

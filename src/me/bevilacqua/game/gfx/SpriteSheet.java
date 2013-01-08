@@ -13,6 +13,8 @@ public class SpriteSheet {
 	
 	public static final SpriteSheet SolidTiles = new SpriteSheet("/Textures/SolidTile.png", 256);
 	
+	public static final SpriteSheet DefaultPlayer = new SpriteSheet("/Mobs/Player/Default.png" , 96);
+	
 	public SpriteSheet(String path , int size) {
 		this.path = path;
 		this.SIZE = size;
