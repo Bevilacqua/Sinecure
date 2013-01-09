@@ -48,11 +48,11 @@ public class Screen {
 	public void renderPlayer(int xp , int  yp , Sprite sprite) {
 		xp -= xOffset;
 		yp -= yOffset;
-		for(int y = 0 ; y < 15; y++) {
+		for(int y = 0 ; y < Sprite.getHeight(sprite); y++) {
 			int yAbs = y + yp;
-			for(int x = 0 ; x < 16 ; x++) {
+			for(int x = 0 ; x < Sprite.getWidth(sprite) ; x++) {
 				int xAbs = x + xp;
-				if(xAbs < -16 || xAbs >= width || yAbs < 0 || yAbs >= height) break;
+				if(xAbs < -Sprite.getWidth(sprite) || xAbs >= width || yAbs < 0 || yAbs >= height) break;
 				if(xAbs < 0) xAbs = 0;
 				int col = sprite.pixels[x + y * 16];
 				if(col != 0xffff00ff) pixels[xAbs + yAbs * width] = col;

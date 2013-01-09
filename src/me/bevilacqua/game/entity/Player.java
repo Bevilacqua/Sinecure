@@ -30,8 +30,7 @@ public class Player extends Mob {
 	}
 	
 	public void render(Screen screen ) {
-		screen.renderPlayer(x , y ,Sprite.DefaultPlayer0); //TODO: find better way to render player because there are going to be multiple types of the player
-		screen.renderPlayer(x, y + 15, Sprite.DefaultPlayer1);
+		screen.renderPlayer(x , y ,Sprite.DefaultPlayer); //TODO: find better way to render player because there are going to be multiple types of the player
 	}
 
 	@Override

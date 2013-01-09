@@ -8,7 +8,8 @@ public class Sprite {
 	public int[] pixels;
 	protected SpriteSheet sheet;
 	public String name;
-	public boolean isTrans = false;
+	private int height;
+	private int width;
 	private static int voidColor = 0x666666;
 	
 	public static final Sprite Beam_Light = new Sprite(SpriteSheet.SolidTiles, 16 , 0, 0, "Beam_Light");
@@ -24,8 +25,8 @@ public class Sprite {
 	
 	//Player Sprites
 		//DefaultPlayer (There will be many)
-		public static final Sprite DefaultPlayer0 = new Sprite(SpriteSheet.DefaultPlayer , 16 , 0 , 0 , "-DefaultPlayer0");
-		public static final Sprite DefaultPlayer1 = new Sprite(SpriteSheet.DefaultPlayer , 16 , 0 , 1 , "-DefaultPlayer1");
+		public static final Sprite DefaultPlayer = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 0 , 0 , "-DefaultPlayer0");
+		
 
 	
 	public Sprite() {
@@ -42,11 +43,13 @@ public class Sprite {
 		}
 		System.out.println("Void Sprite Loaded");
 	}
+
 	
-	public Sprite(SpriteSheet sheet , int size , int x , int y  , String name , boolean isTrans) {
-		this.size = size;
-		this.isTrans = true;
-		pixels = new int[size * size]; //Creates a pixel array the size of the sprite
+	public Sprite(SpriteSheet sheet , int width , int height , int x , int y  , String name) {
+		this.size = height;
+		this.height = height;
+		this.width = width;
+		pixels = new int[width * height]; //Creates a pixel array the size of the sprite
 		this.x = x * size; //* size so it moves over an entire tile over
 		this.y = y * size; //
 		this.sheet = sheet;
@@ -71,6 +74,8 @@ public class Sprite {
 	
 	public Sprite(SpriteSheet sheet , int size , int x , int y  , String name) {
 		this.size = size;
+		this.width = size;
+		this.height = size;
 		pixels = new int[size * size]; //Creates a pixel array the size of the sprite
 		this.x = x * size; //* size so it moves over an entire tile over
 		this.y = y * size; //
@@ -83,10 +88,18 @@ public class Sprite {
 		return sprite.size;
 	}
 	
+	public static int getWidth(Sprite sprite) {
+		return sprite.width;
+	}
+	
+	public static int getHeight(Sprite sprite) {
+		return sprite.height;
+	}
+	
 	public void load() {
-		for(int y = 0 ; y < size ; y++) {
-			for(int x = 0 ; x < size ; x++) {
-				pixels[x + y * size] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
+		for(int y = 0 ; y < height ; y++) {
+			for(int x = 0 ; x < width ; x++) {
+				pixels[x + y * width] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
 			}
 		}
 		System.out.println(this.name + " (Sprite) Loaded | Size: " + Sprite.getSize(this));

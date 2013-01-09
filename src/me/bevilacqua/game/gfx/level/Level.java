@@ -28,7 +28,6 @@ public class Level {
 	public Level(String path , String name , int background) {
 		this.name = name;
 		MainGame.setFill(background);
-		Sprite.setVoidColor(background);
 		loadLevel(path);
 	}
 
