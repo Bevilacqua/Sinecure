@@ -158,7 +158,7 @@ public class MainGame extends Canvas implements Runnable {
 			screen.fillBackRoundSolidColor(fill);
 			int xScroll = player.getX() - screen.width /2;
 			int yScroll = player.getY() - screen.height /2;
-
+			
 			level.render(xScroll, yScroll , screen);
 			player.render(screen);
 		

@@ -44,6 +44,7 @@ public class Screen {
 			pixels[i] = color;
 	}
 	
+	
 	public void renderPlayer(int xp , int  yp , Sprite sprite) {
 		xp -= xOffset;
 		yp -= yOffset;
@@ -69,7 +70,9 @@ public class Screen {
 				int xAbs = x + xPos;
 				if(xAbs < -tile.sprite.size || xAbs >= width || yAbs < 0 || yAbs >= height) break;
 				if(xAbs < 0) xAbs = 0;
-				pixels[xAbs + yAbs * width] = tile.sprite.pixels[x + y * tile.sprite.size];
+				int col = tile.sprite.pixels[x + y * 16];
+				if(col != 0xffff00ff) pixels[xAbs + yAbs * width] = col;
+//				pixels[xAbs + yAbs * width] = tile.sprite.pixels[x + y * tile.sprite.size];
 			}
 		}
 	}

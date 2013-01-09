@@ -1,6 +1,6 @@
 package me.bevilacqua.game.gfx;
 
-public abstract class Sprite {
+public class Sprite {
 	
 	public int size;
 	protected int x;
@@ -11,19 +11,21 @@ public abstract class Sprite {
 	public boolean isTrans = false;
 	private static int voidColor = 0x666666;
 	
-	public static final Sprite Beam_Light = new BasicSprite(SpriteSheet.SolidTiles, 16 , 0, 0, "Beam_Light");
-	public static final Sprite Beam_Dark = new BasicSprite(SpriteSheet.SolidTiles, 16 , 1 , 0 , "Beam_Dark");
-	public static final Sprite Test_Sprite = new BasicSprite(SpriteSheet.SolidTiles, 16 , 2 , 0 , "Test_Sprite");
+	public static final Sprite Beam_Light = new Sprite(SpriteSheet.SolidTiles, 16 , 0, 0, "Beam_Light");
+	public static final Sprite Beam_Dark = new Sprite(SpriteSheet.SolidTiles, 16 , 1 , 0 , "Beam_Dark");
+	public static final Sprite Test_Sprite = new Sprite(SpriteSheet.SolidTiles, 16 , 2 , 0 , "Test_Sprite");
 	
-	public static final Sprite Fire_Barrel = new BasicTransSprite(SpriteSheet.SolidTiles, 16 , 3 , 0 , "Fire_Barrel" , true);
+	public static final Sprite Fire_Barrel = new Sprite(SpriteSheet.SolidTiles, 16 , 3 , 0 , "Fire_Barrel");
 
-	public static final Sprite Lava_Test = new BasicSprite(0xff2f00 , "Lava_Test");
-	public static final Sprite DarkNess = new BasicSprite(0x000000 , "DarkNess");
-	public static final Sprite DarkDirt = new BasicSprite(0x542100 , "DarkDirt");
-	public static final Sprite VOID = new BasicSprite();
+	public static final Sprite Lava_Test = new Sprite(0xff2f00 , "Lava_Test");
+	public static final Sprite DarkNess = new Sprite(0x000000 , "DarkNess");
+	public static final Sprite DarkDirt = new Sprite(0x542100 , "DarkDirt");
+	public static final Sprite VOID = new Sprite();
 	
-	public static final Sprite DefaultPlayer0 = new BasicSprite(SpriteSheet.DefaultPlayer , 16 , 0 , 0 , "-DefaultPlayer0");
-	public static final Sprite DefaultPlayer1 = new BasicSprite(SpriteSheet.DefaultPlayer , 16 , 0 , 1 , "-DefaultPlayer1");
+	//Player Sprites
+		//DefaultPlayer (There will be many)
+		public static final Sprite DefaultPlayer0 = new Sprite(SpriteSheet.DefaultPlayer , 16 , 0 , 0 , "-DefaultPlayer0");
+		public static final Sprite DefaultPlayer1 = new Sprite(SpriteSheet.DefaultPlayer , 16 , 0 , 1 , "-DefaultPlayer1");
 
 	
 	public Sprite() {
@@ -81,7 +83,14 @@ public abstract class Sprite {
 		return sprite.size;
 	}
 	
-	protected abstract void load();
+	public void load() {
+		for(int y = 0 ; y < size ; y++) {
+			for(int x = 0 ; x < size ; x++) {
+				pixels[x + y * size] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
+			}
+		}
+		System.out.println(this.name + " (Sprite) Loaded | Size: " + Sprite.getSize(this));
+	}
 
 	public int getVoidColor() {
 		return voidColor;
