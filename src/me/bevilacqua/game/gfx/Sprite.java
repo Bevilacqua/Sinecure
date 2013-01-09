@@ -25,7 +25,10 @@ public class Sprite {
 	
 	//Player Sprites
 		//DefaultPlayer (There will be many)
-		public static final Sprite DefaultPlayer = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 0 , 0 , "-DefaultPlayer0");
+		public static final Sprite DefaultPlayerForward = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 0 , 0 , "-DefaultPlayerF");
+		public static final Sprite DefaultPlayerRight = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 0 , 1 , "-DefaultPlayerL");
+		public static final Sprite DefaultPlayerLeft = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 0 , 2 , "-DefaultPlayerR");
+
 		
 
 	
@@ -50,8 +53,8 @@ public class Sprite {
 		this.height = height;
 		this.width = width;
 		pixels = new int[width * height]; //Creates a pixel array the size of the sprite
-		this.x = x * size; //* size so it moves over an entire tile over
-		this.y = y * size; //
+		this.x = x * this.width; //* size so it moves over an entire tile over
+		this.y = y * this.height; //
 		this.sheet = sheet;
 		this.name = name;
 		load();

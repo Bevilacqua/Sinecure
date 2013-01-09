@@ -21,16 +21,18 @@ public class Player extends Mob {
 
 	public void tick() {	
 		int xa  = 0 , ya = 0;
-		if(input.up) ya--;
-		if(input.down) ya++;
+		if(input.up) ya--; 
+		if(input.down) ya++; 
 		if(input.left) xa--;
-		if(input.right) xa++;
+		if(input.right) xa++; 
 		
 		if(xa != 0 || ya != 0) move(xa , ya);
 	}
 	
 	public void render(Screen screen ) {
-		screen.renderPlayer(x , y ,Sprite.DefaultPlayer); //TODO: find better way to render player because there are going to be multiple types of the player
+		if(this.dir == 0) screen.renderPlayer(x , y ,Sprite.DefaultPlayerForward); //TODO: find better way to render player because there are going to be multiple types of the player
+		if(this.dir == 1) screen.renderPlayer(x , y ,Sprite.DefaultPlayerLeft);
+		if(this.dir == 2) screen.renderPlayer(x , y ,Sprite.DefaultPlayerRight);
 	}
 
 	@Override
