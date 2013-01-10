@@ -160,7 +160,7 @@ public class MainGame extends Canvas implements Runnable {
 			int xScroll = player.getX() - screen.width /2;
 			int yScroll = player.getY() - screen.height /2;
 			
-			screen.fillBackRoundImage(xScroll , yScroll , "/Levels/TestBckgrnd.png" , screen);
+			screen.fillBackRoundImage("/Levels/TestBckgrnd.png" , screen);
 			level.render(xScroll, yScroll , screen);
 			player.render(screen);
 		

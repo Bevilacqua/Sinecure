@@ -51,9 +51,8 @@ public class Screen {
 			pixels[i] = color;
 	}
 	
-	public void fillBackRoundImage(int xp , int yp , String path , Screen screen) { 
-		xp -= xOffset;
-		yp -= yOffset;
+	public void fillBackRoundImage(String path , Screen screen) { 
+	
 		int w = -1;
 		int h = -1;
 		if(image == null) {
@@ -61,7 +60,7 @@ public class Screen {
 				this.image = ImageIO.read(Screen.class.getResourceAsStream(path));
 				w = image.getWidth();
 				h = image.getHeight();
-				pix = new int[w * h + 10];
+				pix = new int[w * h];
 				image.getRGB(0, 0, w, h, pix, 0, w); //puts the image into the pixels array
 				System.out.println(pix[0]);
 			} catch (IOException e) {
@@ -70,13 +69,11 @@ public class Screen {
 			System.out.println("Background Loaded");
 		}		
 		for(int x = 0 ; x < screen.width ; x++) {
-			int xAbs = x + xp;
 			for(int y = 0 ; y < screen.height ; y++) {
-				int yAbs = y + yp;
-				if(xAbs >= width || yAbs < 0 || yAbs >= height) break;
-				if(yAbs < 0) yAbs = 0;
-				if(xAbs < 0) xAbs = 0;
-				pixels[xAbs + yAbs * width] = pix[x + y * width];
+				if(x >= width || y < 0 || y >= height) break;
+				if(y < 0) y = 0;
+				if(x < 0) x = 0;
+				pixels[x + y * width] = pix[x + y * width];
 			}
 		}
 
