@@ -13,8 +13,8 @@ public abstract class Tile {
 	
     public static final Tile[] tiles = new Tile[256];
 	//Tiles Below
-    public static final Tile VOID = new BasicTile((byte) 0 , Sprite.VOID, 0xffffff); //NOTICE: WHITE 
-    public static final Tile Transparent = new BasicTile((byte) 1 , Sprite.VOID, 0xffffff); //NOTICE: WHITE 
+    public static final Tile VOID = new BasicTile((byte) 1 , Sprite.VOID, 0xffffff); //NOTICE: WHITE 
+    public static final Tile Transparent = new BasicTile((byte) 0 , Sprite.VOID, 0xffffff); //NOTICE: WHITE 
 
     public static final Tile DARKNESS = new BasicTile((byte) 2 , Sprite.DarkNess , 0xff000000);
     public static final Tile LAVA_TEST = new BasicTile((byte) 3 , Sprite.Lava_Test , 0xffff2f00);

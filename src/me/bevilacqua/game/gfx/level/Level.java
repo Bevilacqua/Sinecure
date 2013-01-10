@@ -50,7 +50,7 @@ public class Level {
 
 		for(int y = y0; y < y1; y++) {
 			for(int x = x0; x < x1; x++) {
-				if(getTile(x , y) != Tile.VOID)
+				if(getTile(x , y) != Tile.Transparent)
 					getTile(x, y).render(x, y, screen);
 			}
 		}

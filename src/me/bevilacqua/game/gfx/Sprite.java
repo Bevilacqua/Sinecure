@@ -22,6 +22,7 @@ public class Sprite {
 	public static final Sprite DarkNess = new Sprite(0x000000 , "DarkNess");
 	public static final Sprite DarkDirt = new Sprite(0x542100 , "DarkDirt");
 	public static final Sprite VOID = new Sprite();
+	public static final Sprite Trans = new Sprite(0xff2f00 , "Transparent");
 	
 	//Player Sprites
 		//DefaultPlayer (There will be many)
@@ -79,7 +80,7 @@ public class Sprite {
 		this.size = size;
 		this.width = size;
 		this.height = size;
-		pixels = new int[size * size]; //Creates a pixel array the size of the sprite
+		pixels = new int[size * size * sheet.SIZE]; //Creates a pixel array the size of the sprite
 		this.x = x * size; //* size so it moves over an entire tile over
 		this.y = y * size; //
 		this.sheet = sheet;
@@ -103,10 +104,11 @@ public class Sprite {
 		for(int y = 0 ; y < height ; y++) {
 			for(int x = 0 ; x < width ; x++) {
 				pixels[x + y * width] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
-			}
-		}
+ 			}
+ 		}
 		System.out.println(this.name + " (Sprite) Loaded | Size: " + Sprite.getSize(this));
-	}
+
+ 	}
 
 	public int getVoidColor() {
 		return voidColor;
