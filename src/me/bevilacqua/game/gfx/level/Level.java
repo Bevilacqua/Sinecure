@@ -50,7 +50,8 @@ public class Level {
 
 		for(int y = y0; y < y1; y++) {
 			for(int x = x0; x < x1; x++) {
-				getTile(x, y).render(x, y, screen);
+				if(getTile(x , y) != Tile.VOID)
+					getTile(x, y).render(x, y, screen);
 			}
 		}
 	}
@@ -65,7 +66,7 @@ public class Level {
 		if(tilez[x + y * width] == Tile.LAVA_TEST.getId()) return Tile.LAVA_TEST;
 		if(tilez[x + y * width] == Tile.FIRE_BARREL.getId()) return Tile.FIRE_BARREL;
 		if(tilez[x + y * width] == Tile.DARK_DIRT.getId()) return Tile.DARK_DIRT;
-		if(tilez[x + y * width] == Tile.VOID.getId()) return Tile.VOID;
+		if(tilez[x + y * width] == Tile.Transparent.getId()) return Tile.Transparent;
 
 		return Tile.VOID;
 		

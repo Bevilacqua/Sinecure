@@ -156,10 +156,11 @@ public class MainGame extends Canvas implements Runnable {
 		screen.clear();
 		
 		//Rendering goes below:
-			screen.fillBackRoundSolidColor(0x666666);
+			screen.fillBackRoundSolidColor(0x456654);
 			int xScroll = player.getX() - screen.width /2;
 			int yScroll = player.getY() - screen.height /2;
 			
+			screen.fillBackRoundImage(xScroll , yScroll , "/Levels/TestBckgrnd.png" , screen);
 			level.render(xScroll, yScroll , screen);
 			player.render(screen);
 		
