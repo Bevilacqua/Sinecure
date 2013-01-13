@@ -40,7 +40,7 @@ public class MainGame extends Canvas implements Runnable {
 	DecimalFormat df = new DecimalFormat("###.##");
 
 		
-	private BufferedImage image = new BufferedImage(WIDTH , HEIGHT , BufferedImage.TYPE_INT_RGB); //The image the game runs on but you cant edit it without a raster
+	public static BufferedImage image = new BufferedImage(WIDTH , HEIGHT , BufferedImage.TYPE_INT_RGB); //The image the game runs on but you cant edit it without a raster
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); //Converts the buffered image into an array of integers to hold pixel data 
 	private String vers = "Pre-Alpha 0.00";
 
