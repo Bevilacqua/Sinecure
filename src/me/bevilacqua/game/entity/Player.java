@@ -18,6 +18,8 @@ public class Player extends Mob {
 	private InputHandler input;
 	private int imageId = 0;
 	private Random random = new Random();
+	private int anim = 0;
+	private boolean walking;
 	
 	
 	public Player(InputHandler input) { //Mouse Later
@@ -32,6 +34,10 @@ public class Player extends Mob {
 
 	public void tick() {	
 		int xa  = 0 , ya = 0;
+		
+		if(anim < 2) anim++; //TODO allows for 4 animation slots want more animations? raise number
+		else anim = 0;
+		
 		if(input.up) ya--; 
 		if(input.down) ya++; 
 		if(input.left) xa--;
@@ -52,13 +58,51 @@ public class Player extends Mob {
 			}
 		}
 		
-		if(xa != 0 || ya != 0) move(xa , ya);
+		if(xa != 0 || ya != 0) {
+			move(xa , ya); walking = true;
+		}
+		else {
+			walking = false;
+		}
+		
 	}
 	
 	public void render(Screen screen ) {
-		if(this.dir == 0) screen.renderPlayer(x , y ,Sprite.DefaultPlayerForward); //TODO: find better way to render player because there are going to be multiple types of the player
-		if(this.dir == 1) screen.renderPlayer(x , y ,Sprite.DefaultPlayerLeft);
-		if(this.dir == 2) screen.renderPlayer(x , y ,Sprite.DefaultPlayerRight);
+		if(this.dir == 0)  {
+			screen.renderPlayer(x , y ,Sprite.DefaultPlayerForward); 
+			if(walking ) {
+				if(anim == 1 || anim == 3) {
+					screen.renderPlayer(x , y ,Sprite.DefaultPlayerForward_1); 
+				}
+				if(anim == 2 || anim == 0) {
+					screen.renderPlayer(x , y ,Sprite.DefaultPlayerForward_2); 
+				}
+			}
+		}
+		if(this.dir == 1) {
+			screen.renderPlayer(x , y ,Sprite.DefaultPlayerLeft);
+			
+			if(walking ) {
+				if(anim == 1 || anim == 3) {
+					screen.renderPlayer(x , y ,Sprite.DefaultPlayerLeft_1); 
+				}
+				if(anim == 2 || anim == 0) {
+					screen.renderPlayer(x , y ,Sprite.DefaultPlayerLeft_2); 
+				}
+			}
+		}
+		if(this.dir == 2) {
+			screen.renderPlayer(x , y ,Sprite.DefaultPlayerRight);
+			
+			if(walking ) {
+				if(anim % 4 == 1 || anim % 4 == 3) {
+					screen.renderPlayer(x , y ,Sprite.DefaultPlayerRight_1); 
+				}
+				if(anim % 4 == 2 || anim % 4 ==  0) {
+					screen.renderPlayer(x , y ,Sprite.DefaultPlayerRight_2); 
+				}
+			}
+		}
 	}
 
 	@Override

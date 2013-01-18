@@ -27,8 +27,16 @@ public class Sprite {
 	//Player Sprites
 		//DefaultPlayer (There will be many)
 		public static final Sprite DefaultPlayerForward = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 0 , 0 , "-DefaultPlayerF");
-		public static final Sprite DefaultPlayerRight = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 0 , 1 , "-DefaultPlayerL");
-		public static final Sprite DefaultPlayerLeft = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 0 , 2 , "-DefaultPlayerR");
+		public static final Sprite DefaultPlayerForward_1 = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 1 , 0 , "DefaultPlayerF_1");
+		public static final Sprite DefaultPlayerForward_2 = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 2 , 0 , "DefaultPlayerF_2") ;
+
+		public static final Sprite DefaultPlayerRight = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 0 , 1 , "-DefaultPlayerR");
+		public static final Sprite DefaultPlayerRight_1 = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 1 , 1 , "DefaultPlayerR_1");
+		public static final Sprite DefaultPlayerRight_2 = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 2 , 1 , "DefaultPlayerR_2") ;
+		
+		public static final Sprite DefaultPlayerLeft = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 0 , 2 , "-DefaultPlayerL");
+		public static final Sprite DefaultPlayerLeft_1 = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 1 , 2 , "DefaultPlayerL_1");
+		public static final Sprite DefaultPlayerLeft_2 = new Sprite(SpriteSheet.DefaultPlayer , 16 , 32 , 2 , 2 , "DefaultPlayerL_2") ;
 
 		
 

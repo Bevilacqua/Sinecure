@@ -42,7 +42,8 @@ public class MainGame extends Canvas implements Runnable {
 		
 	public static BufferedImage image = new BufferedImage(WIDTH , HEIGHT , BufferedImage.TYPE_INT_RGB); //The image the game runs on but you cant edit it without a raster
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); //Converts the buffered image into an array of integers to hold pixel data 
-	private String vers = "Pre-Alpha 0.00";
+	private String PrefixVers = "Pre-Alpha";
+	private String NumberVers = "0.00.01";
 
 	private static Dimension size = new Dimension(WIDTH * SCALE , HEIGHT * SCALE);
 	
@@ -181,7 +182,7 @@ public class MainGame extends Canvas implements Runnable {
 		if(Fframes <= 20 || Fframes > 65) err = "| CHECK FRAMERATE |"; 
 		g.drawString("(" + Fframes + ")" + " " + df.format(framePerc) + "% " + err  , 10 , HEIGHT * SCALE - 10);
 		g.setColor(Color.white);
-		g.drawString("Version: " + vers   , WIDTH * SCALE - 150 , HEIGHT * SCALE - 10);
+		g.drawString("Version: " + PrefixVers + " " + NumberVers   , WIDTH * SCALE - 150 , HEIGHT * SCALE - 10);
 
 		//End of FrameRateDisplay
 		
